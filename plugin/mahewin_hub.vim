@@ -36,7 +36,13 @@ function! HubPullRequest(dest,current_branch,...)
     if (a:0)
         let l:pull_request = system(g:hub_executable . ' pull-request -b ' . a:dest . ' -h ' . a:current_branch . ' -i ' . a:1)
     else
-        let l:pull_request = system(g:hub_executable . ' pull-request -b ' . a:dest . ' -h ' . a:current_branch)
+        noautocmd execute '!' . g:hub_executable . ' pull-request -b ' . a:dest . ' -h ' . a:current_branch
+
+        if !has('gui_running')
+            redraw!
+        fi
+
+        return ''
     endif
 
     if (s:fatal_error(l:pull_request) != '' )
