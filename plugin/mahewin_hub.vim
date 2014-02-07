@@ -13,9 +13,14 @@ if !exists("g:hub_executable")
     let g:hub_executable = 'hub'
 endif
 
-function! HubClone(repository,directory_clone)
+function! HubClone(repository,directory_clone,...)
     execute 'cd ' . a:directory_clone
-    let l:clone = system(g:hub_executable . ' clone ' . a:repository)
+
+    if (a:0)
+        let l:clone = system(g:hub_executable . ' clone -p ' . a:repository)
+    else
+        let l:clone = system(g:hub_executable . ' clone ' . a:repository)
+    endif
 
     if (s:fatal_error(l:clone) != '')
         return ''
