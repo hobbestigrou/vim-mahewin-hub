@@ -40,7 +40,7 @@ function! HubPullRequest(dest,current_branch,...)
 
         if !has('gui_running')
             redraw!
-        fi
+        endif
 
         return ''
     endif
