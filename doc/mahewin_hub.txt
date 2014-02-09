@@ -1,15 +1,15 @@
 mahewin_hub.txt for hub commad.
 
-Author: Natal Ngétal (Hobbestigrou)   fortune-vimtips-author
+Author: Natal Ngétal (Hobbestigrou)   mahewin-hub-author
 License: Same terms as Vim itself (see license)
 
-CONTENTS                                        fortune-vimtips-contents
+CONTENTS                                        mahewin-hub-contents
 
-1. Introduction                 fortune-vimtips-intro
-2. Options                      fortune-vimtips-options
-3. Commands                     fortune-vimtips-commands
-4. Authors                      fortune-vimtips-authors
-5. History                      fortune-vimtips-history
+1. Introduction                                 mahewin-hub-intro
+2. Options                                      mahewin-hub-options
+3. Commands                                     mahewin-hub-commands
+4. Authors                                      mahewin-hub-authors
+5. History                                      mahewin-hub-history
 
 INTRODUCTION                                    mahewin-hub-intro
 
@@ -40,7 +40,11 @@ COMMANDS                                        mahewin-hub-commands
     You are moved to the cloned directory
 
 :HubPullRequest
-    To make a new pull request.
+    To make a new pull request. Can take the base branch and the HEAD branch.
+
+:HubPullRequestIssue
+    To make a new pull request. Take a issue, and can take the base branch and
+    the HEAD branch.
 
 :HubFork
     To fork a github project.
