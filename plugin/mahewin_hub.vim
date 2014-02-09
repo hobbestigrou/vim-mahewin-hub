@@ -34,7 +34,7 @@ endfunction
 
 function! HubPullRequest(...)
     if (a:0)
-        if (a:2)
+        if (exists("a:2"))
             noautocmd execute '!' . g:hub_executable . ' pull-request -b ' . a:1 . ' -h ' . a:2
         else
             noautocmd execute '!' . g:hub_executable . ' pull-request -h ' . a:1
@@ -51,7 +51,7 @@ endfunction
 
 function! HubPullRequestIssue(issue,...)
     if (a:0)
-        if (a:2)
+        if (exists(("a:2"))
             let l:pull_request = system(g:hub_executable . ' pull-request -b ' . a:1 . ' -h ' . a:2 . ' -i ' . a:issue)
         else
             let l:pull_request = system(g:hub_executable . ' pull-request -h ' . a:1 . ' -i ' . a:issue)
@@ -148,5 +148,5 @@ command -nargs=? HubBrowsePullRequest call HubBrowsePullRequest(<f-args>)
 command -nargs=? HubBrowseWiki call HubBrowseWiki(<f-args>)
 command -nargs=* HubBrowseBranch call HubBrowseBranch(<f-args>)
 command -nargs=* HubPullRequest call HubPullRequest(<f-args>)
-command -nargs=* HubPullRequestIssue call HubPullRequest(<f-args>)
+command -nargs=* HubPullRequestIssue call HubPullRequestIssue(<f-args>)
 command HubFork call HubFork()
