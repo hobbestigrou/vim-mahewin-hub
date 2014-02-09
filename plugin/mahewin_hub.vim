@@ -45,6 +45,7 @@ function! HubPullRequest(...)
 
     if !has('gui_running')
         redraw!
+    endif
 
     return ''
 endfunction
