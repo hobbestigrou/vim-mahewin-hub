@@ -1,0 +1,72 @@
+mahewin_hub.txt for hub commad.
+
+Author: Natal Ngétal (Hobbestigrou)   fortune-vimtips-author
+License: Same terms as Vim itself (see license)
+
+CONTENTS                                        fortune-vimtips-contents
+
+1. Introduction                 fortune-vimtips-intro
+2. Options                      fortune-vimtips-options
+3. Commands                     fortune-vimtips-commands
+4. Authors                      fortune-vimtips-authors
+5. History                      fortune-vimtips-history
+
+INTRODUCTION                                    mahewin-hub-intro
+
+This plugin a plugin to provide interface for hub command.
+
+OPTIONS                                         mahewin-hub-options
+
+Overview:
+                                                  *g:loaded_loaded_hub*
+    |g:loaded_hub|                                  boolean ( default 1 )
+
+        Use this to disable the plugin completely.
+
+                                                  *g:hub_executable*
+    |g:hub_executable|                              string ( default "hub" )
+
+        Path of hub command.
+
+COMMANDS                                        mahewin-hub-commands
+
+:HubClone
+    To clone a github repository, take the repostitory to clone, the path to
+    clone the repository and a optional flag to use git protocol to clone the
+    repository, for example:
+
+        :HubClone VimMahewinHub /home/hobbestigrou 1
+
+    You are moved to the cloned directory
+
+:HubPullRequest
+    To make a new pull request.
+
+:HubFork
+    To fork a github project.
+
+:HubBrowseIssue
+    To open github issue list in a browser. Can take a project name in
+    argument to open issue of another project.
+
+:HubBrowsePullRequest
+    To open github pull request list in a browser. Can take a project name in
+    argument to open pull request of another project.
+
+:HubBrowseBranch
+    To open a github branch in a browser. Take the branch name in argument and
+    can take a project name to open a branch of another project.
+
+:HubBrowseWiki
+    To open github wiki in a browser. Can take a project nane in argument to
+    open wiki of another project.
+
+AUTHORS                                         mahewin-hub-authors
+
+MahewinHub is written and maintained by Natal Ngétal (Hobbestigrou).
+
+HISTORY                                          mahewin-hub-history
+
+0.1 ( 09 Feb 2014 )
+
+- initial release
