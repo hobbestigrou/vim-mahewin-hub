@@ -32,17 +32,32 @@ function! HubClone(repository,directory_clone,...)
     return ''
 endfunction
 
-function! HubPullRequest(dest,current_branch,...)
+function! HubPullRequest(...)
     if (a:0)
-        let l:pull_request = system(g:hub_executable . ' pull-request -b ' . a:dest . ' -h ' . a:current_branch . ' -i ' . a:1)
-    else
-        noautocmd execute '!' . g:hub_executable . ' pull-request -b ' . a:dest . ' -h ' . a:current_branch
-
-        if !has('gui_running')
-            redraw!
+        if (a:2)
+            noautocmd execute '!' . g:hub_executable . ' pull-request -b ' . a:1 . ' -h ' . a:2
+        else
+            noautocmd execute '!' . g:hub_executable . ' pull-request -h ' . a:1
         endif
+    else
+        noautocmd execute '!' . g:hub_executable . ' pull-request'
+    endif
 
-        return ''
+    if !has('gui_running')
+        redraw!
+
+    return ''
+endfunction
+
+function! HubPullRequestIssue(issue,...)
+    if (a:0)
+        if (a:2)
+            let l:pull_request = system(g:hub_executable . ' pull-request -b ' . a:1 . ' -h ' . a:2 . ' -i ' . a:issue)
+        else
+            let l:pull_request = system(g:hub_executable . ' pull-request -h ' . a:1 . ' -i ' . a:issue)
+        endif
+    else
+        let l:pull_request = system(g:hub_executable . ' pull-request -i ' . a:issue)
     endif
 
     if (s:fatal_error(l:pull_request) != '' )
@@ -133,4 +148,5 @@ command -nargs=? HubBrowsePullRequest call HubBrowsePullRequest(<f-args>)
 command -nargs=? HubBrowseWiki call HubBrowseWiki(<f-args>)
 command -nargs=* HubBrowseBranch call HubBrowseBranch(<f-args>)
 command -nargs=* HubPullRequest call HubPullRequest(<f-args>)
+command -nargs=* HubPullRequestIssue call HubPullRequest(<f-args>)
 command HubFork call HubFork()
