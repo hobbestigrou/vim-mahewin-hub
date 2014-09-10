@@ -135,6 +135,11 @@ function! s:hub_browse(type,...)
 endfunction
 
 function! s:fatal_error(error)
+    if (matchstr(a:error, '^github.com username') == 'github.com username')
+        echoerr 'Check if hub is correctly configured'
+        return a:error
+    endif
+
     if (matchstr(a:error, '^fatal') == 'fatal')
         echoerr a:error
         return a:error
