@@ -110,7 +110,7 @@ endfunction
 
 function! HubBrowseWiki(...)
     if (a:0)
-        s:hub_browse('wiki',a:1)
+        call s:hub_browse('wiki',a:1)
     else
         call s:hub_browse('wiki')
     endif
@@ -124,11 +124,9 @@ function! s:hub_browse(type,...)
         let l:browse = system(g:hub_executable . ' browse '  . l:project . ' ' . a:type)
     else
         let l:browse = system(g:hub_executable . ' browse -- ' . a:type)
-
-        if (l:browse != '')
-            echoerr l:browse
-        endif
     endif
+
+    call s:fatal_error(l:browse)
 
     return ''
 endfunction
@@ -141,6 +139,11 @@ function! s:fatal_error(error)
 
     if (matchstr(a:error, '^fatal') == 'fatal')
         echoerr a:error
+        return a:error
+    endif
+
+    if (matchstr(a:error, '^/usr/local/bin/hub:1991:in `block in browse') == '/usr/local/bin/hub:1991:in `block in browse')
+        echoerr 'Check if you are on a git repository'
         return a:error
     endif
 
