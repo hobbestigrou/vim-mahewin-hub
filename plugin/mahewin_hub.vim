@@ -53,18 +53,17 @@ endfunction
 function! HubPullRequestIssue(issue,...)
     if (a:0)
         if (exists(("a:2"))
-            let l:pull_request = system(g:hub_executable . ' pull-request -b ' . a:1 . ' -h ' . a:2 . ' -i ' . a:issue)
+            noautocmd execute '!' . g:hub_executable . ' pull-request -b ' . a:1 . ' -h ' . a:2 . ' -i ' . a:issue
         else
-            let l:pull_request = system(g:hub_executable . ' pull-request -h ' . a:1 . ' -i ' . a:issue)
+            noautocmd execute '!' . g:hub_executable . ' pull-request -h ' . a:1 . ' -i ' . a:issue
         endif
     else
-        let l:pull_request = system(g:hub_executable . ' pull-request -i ' . a:issue)
+        noautocmd execute '!' . g:hub_executable . ' pull-request -i ' . a:issue
     endif
 
-    if (s:fatal_error(l:pull_request) != '' )
-        return ''
+    if !has('gui_running')
+        redraw!
     endif
-    echo l:pull_request
 
     return ''
 endfunction
