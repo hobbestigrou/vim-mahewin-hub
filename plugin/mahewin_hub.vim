@@ -52,7 +52,7 @@ endfunction
 
 function! HubPullRequestIssue(issue,...)
     if (a:0)
-        if (exists(("a:2"))
+        if (exists("a:2"))
             noautocmd execute '!' . g:hub_executable . ' pull-request -b ' . a:1 . ' -h ' . a:2 . ' -i ' . a:issue
         else
             noautocmd execute '!' . g:hub_executable . ' pull-request -h ' . a:1 . ' -i ' . a:issue
